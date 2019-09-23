@@ -3,6 +3,9 @@ FROM node:10
 # Create app directory
 WORKDIR /usr/src/app
 
+ARG GIT_COMMIT=unspecified
+LABEL git_commit=$GIT_COMMIT
+
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
@@ -17,4 +20,4 @@ COPY . .
 
 EXPOSE 8080
 
-CMD [ "node", "aap.js" ]
+CMD [ "node", "app.js" ]

@@ -1,0 +1,13 @@
+
+#BUILD
+docker build -t <your username>/node-project .
+or 
+docker build -t node-project --build-arg GIT_COMMIT=$(git log -1 --format=%h) .
+
+#RUN
+docker run -p 49160:8080 -d <your username>/node-project
+
+#PUSH
+docker login
+docker tag node-project:$(git log -1 --format=%h) <your username>/node-project:$(git log -1 --format=%h)
+docker push <your username>/node-project
