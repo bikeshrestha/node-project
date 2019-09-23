@@ -1,7 +1,5 @@
 
 #BUILD
-docker build -t <your username>/node-project .
-or 
 docker build -t <your username>/node-project:$(git log -1 --format=%h) .
 
 #RUN
@@ -11,5 +9,3 @@ docker run -p 49160:8080 -d <your username>/node-project
 docker login
 docker tag <your username>/node-project:$(git log -1 --format=%h) <your username>/node-project:latest
 docker push <your username>/node-project
-or
-docker push <your username>/node-project:$(git log -1 --format=%h)
