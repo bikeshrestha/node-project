@@ -7,28 +7,13 @@ services:
 script: 'true'
 
 env:
-  - COMMIT_HASH=development
+  - COMMIT_HASH=$(git log -1 --format=%h)
 
 after_success:
-  - docker build -t $DOCKER_USERNAME/node-project:$COMMIT_HASH .
+  - docker build -t "$DOCKER_USERNAME"/node-project:$(git log -1 --format=%h) .
 
-  - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   
-  - docker tag $DOCKER_USERNAME/node-project:$COMMIT_HASH $DOCKER_USERNAME/node-project:latest
+  - docker tag "$DOCKER_USERNAME"/node-project:$(git log -1 --format=%h) "$DOCKER_USERNAME"/node-project:latest
 
-  - docker push $DOCKER_USERNAME/node-project
-
-# Deploy to EBS
-deploy:
-  - provider: elasticbeanstalk
-    region: "us-east-1"
-    app: "travis-testing"
-    env: "TravisTesting-env"
-    bucket_name: "elasticbeanstalk-us-east-1-264795727753"
-    bucket_path: "TravisTesting-env"
-    on:
-      branch: master
-    access_key_id:
-      secure: "$AWS_ACCESS_KEY"
-    secret_access_key:
-      secure: "$AWS_SECRET_KEY"
+  - docker push "$DOCKER_USERNAME"/node-project
