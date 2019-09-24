@@ -7,13 +7,13 @@ services:
 script: 'true'
 
 env:
-  - COMMIT_HASH=$(git log -1 --format=%h)
+  - TAG=development # must development for development branch
 
 after_success:
-  - docker build -t "$DOCKER_USERNAME"/node-project:$(git log -1 --format=%h) .
+  - docker build -t "$DOCKER_USERNAME"/node-project:$TAG .
 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   
-  - docker tag "$DOCKER_USERNAME"/node-project:$(git log -1 --format=%h) "$DOCKER_USERNAME"/node-project:latest
+  - docker tag "$DOCKER_USERNAME"/node-project:$TAG "$DOCKER_USERNAME"/node-project:latest
 
   - docker push "$DOCKER_USERNAME"/node-project
