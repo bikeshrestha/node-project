@@ -1,0 +1,16 @@
+sudo: required
+services:
+  - docker
+
+#before_install 
+
+script: 'true'
+
+after_success:
+  - docker build -t bikeshrestha/node-project:$(git log -1 --format=%h) .
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  
+  - docker tag bikeshrestha/node-project:$(git log -1 --format=%h) bikeshrestha/node-project:latest
+
+  - docker push hiupsolutions/video
