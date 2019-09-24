@@ -1,0 +1,6 @@
+version: '3'
+services: 
+  node-project:
+    image: 'bikeshrestha/node-project:latest'
+    ports: 
+      - "8080:8080"
