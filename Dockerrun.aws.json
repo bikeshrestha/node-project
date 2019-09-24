@@ -1,0 +1,18 @@
+{
+    "AWSEBDockerrunVersion":2,
+    "containerDefinitions":[
+        {
+            "name":"node-project",
+            "image":"bikeshrestha/node-project:latest",
+            "hostname":"node-project",
+            "essential":true,
+            "portMappings":[
+                {
+                    "hostPort":8080,
+                    "containerPort":8080
+                }
+            ],
+            "memory":400
+        }
+    ]
+}

@@ -17,3 +17,18 @@ after_success:
   - docker tag $DOCKER_USERNAME/node-project:$COMMIT_HASH $DOCKER_USERNAME/node-project:latest
 
   - docker push $DOCKER_USERNAME/node-project
+
+# Deploy to EBS
+deploy:
+  - provider: elasticbeanstalk
+    region: "us-east-1"
+    app: "travis-testing"
+    env: "TravisTesting-env"
+    bucket_name: "elasticbeanstalk-us-east-1-264795727753"
+    bucket_path: "TravisTesting-env"
+    on:
+      branch: master
+    access_key_id:
+      secure: "$AWS_ACCESS_KEY"
+    secret_access_key:
+      secure: "$AWS_SECRET_KEY"
