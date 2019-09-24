@@ -1,5 +1,6 @@
 export DOCKER_USERNAME=<username_docker>
 
+export COMMIT_HASH=$(git log -1 --format=%h)
 
 #BUILD
 docker build -t $DOCKER_USERNAME/node-project:$(git log -1 --format=%h) .

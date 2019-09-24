@@ -10,10 +10,10 @@ env:
   - COMMIT_HASH=$(git log -1 --format=%h)
 
 after_success:
-  - docker build -t "$DOCKER_USERNAME"/node-project:"$COMMIT_HASH" .
+  - docker build -t $DOCKER_USERNAME/node-project:$COMMIT_HASH .
 
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
   
-  - docker tag "$DOCKER_USERNAME"/node-project:"$COMMIT_HASH" "$DOCKER_USERNAME"/node-project:latest
+  - docker tag $DOCKER_USERNAME/node-project:$COMMIT_HASH $DOCKER_USERNAME/node-project:latest
 
-  - docker push "$DOCKER_USERNAME"/node-project
+  - docker push $DOCKER_USERNAME/node-project

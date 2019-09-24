@@ -1,6 +1,6 @@
 version: '3'
 services: 
   node-project:
-    image: 'bikeshrestha/node-project:latest'
+    image: 'bikeshrestha/node-project:$COMMIT_HASH'
     ports: 
       - "8080:8080"
