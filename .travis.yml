@@ -7,7 +7,7 @@ services:
 script: 'true'
 
 env:
-  - COMMIT_HASH=$(git log -1 --format=%h)
+  - COMMIT_HASH=development
 
 after_success:
   - docker build -t $DOCKER_USERNAME/node-project:$COMMIT_HASH .

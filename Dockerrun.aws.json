@@ -3,7 +3,7 @@
     "containerDefinitions":[
         {
             "name":"node-project",
-            "image":"bikeshrestha/node-project:a4f7710",
+            "image":"bikeshrestha/node-project:development",
             "hostname":"node-project",
             "essential":true,
             "portMappings":[
