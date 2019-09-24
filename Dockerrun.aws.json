@@ -3,7 +3,7 @@
     "containerDefinitions":[
         {
             "name":"node-project",
-            "image":"bikeshrestha/node-project:$COMMIT_HASH",
+            "image":"bikeshrestha/node-project:a4f7710",
             "hostname":"node-project",
             "essential":true,
             "portMappings":[
