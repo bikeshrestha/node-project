@@ -12,7 +12,13 @@
                     "containerPort":8080
                 }
             ],
-            "memory":400
+            "memory":400,
+            "environment":[
+                {
+                    "name":"TAG",
+                    "value":"$TAG"
+                }
+            ]
         }
     ]
 }
