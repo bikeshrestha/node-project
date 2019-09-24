@@ -7,10 +7,10 @@ services:
 script: 'true'
 
 after_success:
-  - docker build -t bikeshrestha/node-project:$(git log -1 --format=%h) .
+  - docker build -t "$DOCKER_USERNAME"/node-project:$(git log -1 --format=%h) .
 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   
-  - docker tag bikeshrestha/node-project:$(git log -1 --format=%h) bikeshrestha/node-project:latest
+  - docker tag "$DOCKER_USERNAME"/node-project:$(git log -1 --format=%h) "$DOCKER_USERNAME"/node-project:latest
 
-  - docker push hiupsolutions/video
+  - docker push "$DOCKER_USERNAME"/node-project
