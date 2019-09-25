@@ -10,6 +10,8 @@ env:
   - TAG=development # must development for development branch
 
 after_success:
+  - echo $TRAVIS_BRANCH
+
   - docker build -t "$DOCKER_USERNAME"/node-project:$TAG .
 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
