@@ -9,7 +9,7 @@ const HOST = '0.0.0.0';
 // App
 const app = express();
 app.get('/', (req, res) => {
-  res.send({message:'testing continue',
+  res.send({message:'testing continue for second time',
   port:JSON.stringify(PORT),
   testing_env:JSON.stringify(process.env.TAG)
 });
