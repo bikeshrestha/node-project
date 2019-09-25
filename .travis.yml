@@ -9,8 +9,11 @@ script: 'true'
 env:
   - TAG=development # must development for development branch
 
-after_success:
+before_script:
   - echo $TRAVIS_BRANCH
+
+after_success:
+  
 
   - docker build -t "$DOCKER_USERNAME"/node-project:$TAG .
 
