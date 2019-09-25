@@ -8,7 +8,7 @@ script: 'true'
 
 env:
   - TAG=development # must development for development branch
-  - if [ "$TRAVIS_BRANCH" = "master" ]; then NODE_ENV=master; fi
+  
 before_script:
   - echo $TRAVIS_BRANCH
 
