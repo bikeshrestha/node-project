@@ -9,7 +9,7 @@ const HOST = '0.0.0.0';
 // App
 const app = express();
 app.get('/', (req, res) => {
-  res.send({message:'why not working in ennv',
+  res.send({message:'node env testing',
   port:JSON.stringify(PORT),
   testing_env:JSON.stringify(process.env.TAG)
 });
