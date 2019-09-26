@@ -29,10 +29,6 @@ before_install:
 
 script: 'true'
 
-env:
-  - TAG=development # must development for development branch
-
-
 after_success:
   
 
@@ -70,3 +66,4 @@ env:
     # - DEPLOYMENT_BUCKET=elasticbeanstalk-us-east-1-264795727753
     # - DEPLOYMENT_ENV_NAME=TravisTesting-env
     # - DOCKER_EMAIL=srpbsm@gmail.com
+    - TAG=development # must development for development branch
