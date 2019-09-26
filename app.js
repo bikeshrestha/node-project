@@ -9,7 +9,7 @@ const HOST = '0.0.0.0';
 // App
 const app = express();
 app.get('/', (req, res) => {
-  res.send({message:'node env testing',
+  res.send({message:'travis auto testign',
   port:JSON.stringify(PORT),
   testing_env:JSON.stringify(process.env.TAG)
 });
