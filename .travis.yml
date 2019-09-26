@@ -44,7 +44,7 @@ after_success:
     docker tag node-project $DOCKER_USERNAME/node-project:$TRAVIS_BUILD_ID; 
     docker push $DOCKER_USERNAME/node-project:$TRAVIS_BUILD_ID;
     chmod +x scripts/upload_image_to_elastcbeanstalk.sh
-    bash scripts/upload_image_to_elastcbeanstalk.sh $TRAVIS_BUILD_ID $DEPLOYMENT_BUCKET $DEPLOYMENT_ENV $APP_NAME $DEPLOYMENT_REGION $IMAGE_NAME $DEPLOYMENT_ENV_NAME $DOCKER_USERNAME $DOCKER_REPOSITORY $DOCKER_PASSWORD $DOCKER_EMAIL;
+    ./scripts/upload_image_to_elastcbeanstalk.sh $TRAVIS_BUILD_ID $DEPLOYMENT_BUCKET $DEPLOYMENT_ENV $APP_NAME $DEPLOYMENT_REGION $IMAGE_NAME $DEPLOYMENT_ENV_NAME $DOCKER_USERNAME $DOCKER_REPOSITORY $DOCKER_PASSWORD $DOCKER_EMAIL;
     fi
 # Deploy to EBS
 # deploy:
