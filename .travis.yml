@@ -41,10 +41,10 @@ after_success:
   # - docker push "$DOCKER_USERNAME"/node-project
   # Push image to Docker Hub and update EB environment
   - if [ "$TRAVIS_BRANCH" == "master" ]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker tag node-project $DOCKER_USERNAME/node-project:$TRAVIS_BUILD_ID; 
-    docker push $DOCKER_USERNAME/node-project:$TRAVIS_BUILD_ID;
-    chmod +x scripts/upload_image_to_elastcbeanstalk.sh;
-    ./scripts/upload_image_to_elastcbeanstalk.sh $TRAVIS_BUILD_ID $DEPLOYMENT_BUCKET $DEPLOYMENT_ENV $APP_NAME $DEPLOYMENT_REGION $IMAGE_NAME $DEPLOYMENT_ENV_NAME $DOCKER_USERNAME $DOCKER_REPOSITORY $DOCKER_PASSWORD $DOCKER_EMAIL;
+    docker tag node-project $DOCKER_USERNAME/node-project:development; 
+    docker push $DOCKER_USERNAME/node-project:development;
+    chmod +x upload_image_to_elastcbeanstalk.sh;
+    ./upload_image_to_elastcbeanstalk.sh development $DEPLOYMENT_BUCKET $ENVIRONMENT_ID $APP_NAME $DEPLOYMENT_REGION $IMAGE_NAME $DEPLOYMENT_ENV_NAME $DOCKER_USERNAME $DOCKER_REPOSITORY $DOCKER_PASSWORD $DOCKER_EMAIL;
     fi
 # Deploy to EBS
 # deploy:
@@ -71,6 +71,5 @@ env:
     - DEPLOYMENT_REGION=us-east-1
     - DEPLOYMENT_BUCKET=elasticbeanstalk-us-east-1-264795727753
     - DEPLOYMENT_ENV_NAME=TravisTesting-env
-    - DEPLOYMENT_ENV=TravisTesting-env
     - DOCKER_EMAIL=srpbsm@gmail.com
     - TAG=development # must development for development branch
