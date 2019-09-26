@@ -71,5 +71,6 @@ env:
     - DEPLOYMENT_REGION=us-east-1
     - DEPLOYMENT_BUCKET=elasticbeanstalk-us-east-1-264795727753
     - DEPLOYMENT_ENV_NAME=TravisTesting-env
+    - DEPLOYMENT_ENV=TravisTesting-env
     - DOCKER_EMAIL=srpbsm@gmail.com
     - TAG=development # must development for development branch
