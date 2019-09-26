@@ -32,28 +32,34 @@ script: 'true'
 after_success:
   
 
-  - docker build -t "$DOCKER_USERNAME"/node-project:$TAG .
+  - docker build -t node-project .
 
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  # - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   
-  - docker tag "$DOCKER_USERNAME"/node-project:$TAG "$DOCKER_USERNAME"/node-project:latest
+  # - docker tag "$DOCKER_USERNAME"/node-project:$TAG "$DOCKER_USERNAME"/node-project:latest
 
-  - docker push "$DOCKER_USERNAME"/node-project
-
+  # - docker push "$DOCKER_USERNAME"/node-project
+  # Push image to Docker Hub and update EB environment
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker tag node-project $DOCKER_USERNAME/node-project:$TRAVIS_BUILD_ID; 
+    docker push $DOCKER_USERNAME/node-project:$TRAVIS_BUILD_ID;
+    
+    fi
+# ./scripts/upload_image_to_elastcbeanstalk.sh $TRAVIS_BUILD_ID $DEPLOYMENT_BUCKET $DEPLOYMENT_ENV $APP_NAME $DEPLOYMENT_REGION $IMAGE_NAME $DEPLOYMENT_ENV_NAME $DOCKER_USERNAME $DOCKER_REPOSITORY $DOCKER_PASSWORD $DOCKER_EMAIL;
 # Deploy to EBS
-deploy:
-  - provider: elasticbeanstalk
-    region: "us-east-1"
-    app: "travis-testing"
-    env: "TravisTesting-env"
-    bucket_name: "elasticbeanstalk-us-east-1-264795727753"
-    bucket_path: "TravisTesting-env"
-    on:
-      branch: master
-    access_key_id:
-      secure: "$AWS_ACCESS_KEY"
-    secret_access_key:
-      secure: "$AWS_SECRET_KEY"
+# deploy:
+#   - provider: elasticbeanstalk
+#     region: "us-east-1"
+#     app: "travis-testing"
+#     env: "TravisTesting-env"
+#     bucket_name: "elasticbeanstalk-us-east-1-264795727753"
+#     bucket_path: "TravisTesting-env"
+#     on:
+#       branch: master
+#     access_key_id:
+#       secure: "$AWS_ACCESS_KEY"
+#     secret_access_key:
+#       secure: "$AWS_SECRET_KEY"
 
 env:
   global:
