@@ -41,10 +41,10 @@ after_success:
   # - docker push "$DOCKER_USERNAME"/node-project
   # Push image to Docker Hub and update EB environment
   - if [ "$TRAVIS_BRANCH" == "master" ]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker tag node-project $DOCKER_USERNAME/node-project:development; 
-    docker push $DOCKER_USERNAME/node-project:development;
+    docker tag node-project $DOCKER_USERNAME/node-project:production; 
+    docker push $DOCKER_USERNAME/node-project:production;
     chmod +x upload_image_to_elastcbeanstalk.sh;
-    ./upload_image_to_elastcbeanstalk.sh development $DEPLOYMENT_BUCKET $ENVIRONMENT_ID $APP_NAME $DEPLOYMENT_REGION $IMAGE_NAME $DEPLOYMENT_ENV_NAME $DOCKER_USERNAME $DOCKER_REPOSITORY $DOCKER_PASSWORD $DOCKER_EMAIL;
+    ./upload_image_to_elastcbeanstalk.sh production $DEPLOYMENT_BUCKET $ENVIRONMENT_ID $APP_NAME $DEPLOYMENT_REGION $IMAGE_NAME $DEPLOYMENT_ENV_NAME $DOCKER_USERNAME $DOCKER_REPOSITORY $DOCKER_PASSWORD $DOCKER_EMAIL;
     fi
 # Deploy to EBS
 # deploy:
